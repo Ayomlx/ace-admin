@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>添加、编辑栏目-后台管理-{$site.SITE_INFO.name}</title>
+        <php>
+            $currentNav ='栏目管理 > 添加编辑栏目';
+        </php>
+        <base href="{$site.WEB_ROOT}"/>
+        <css href="__CSS__/base.css"/>
+        <css href="__CSS__/layout.css"/>
+        <css href="__CSS__/common.css"/>
+        <css href="--PUBLIC--/Css/pop_status.css"/>
+        <css href="--PUBLIC--/Js/asyncbox/skins/default.css"/>
+        <js href="--PUBLIC--/Js/jquery-1.7.2.min.js"/>
+        <js href="--PUBLIC--/Js/pop_status.js"/>
+        <js href="--PUBLIC--/Js/functions.js"/>
+        <js href="__JS__/base.js"/>
+        <js href="--PUBLIC--/Js/jquery.form.js"/>
+        <js href="--PUBLIC--/Js/asyncbox/asyncbox.js"/>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr clearfix">
+                        <div class="current">{$info.active|default=添加}栏目</div>
+                    </div>
+                    <form>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th>栏目：</th>
+                                <td>
+                                    <select id="menu" name="info[pid]">
+                                        <option value="0" <eq name="info[pid]" value="0">selected</eq>>根栏目</option>
+                                        <volist name="list" id="vo">
+                                            <option value="{$vo.cid}" <eq name="vo[cid]" value="$info['pid']">selected</eq>>{$vo.name}</option>
+                                            <volist name="vo[childmenu]" id="item">
+                                                <option value="{$item.cid}">&nbsp;&nbsp;&nbsp;&nbsp;├ {$item.name}</option>
+                                            </volist>
+                                        </volist>
+                                    </select>
+                                 </td>
+                            </tr>
+							<tr>
+                                <th width="100">名称：</th>
+                                <td><input type="text" class="input" size="30" name="info[name]" value="{$info.name}"/></td>
+                            </tr>
+                            <tr id="tr_short_name">
+                                <th width="100">简称：</th>
+                                <td><input type="text" class="input" size="30" name="info[short_name]" value="{$info.short_name}"/></td>
+                            </tr>
+                            <tr id="tr_ctl">
+                                <th width="100">控制器名：</th>
+                                <td><input type="text" id="ctl" class="input" size="30" name="info[ctl]" value="{$info.ctl}" onkeyup="value=value.replace(/[^a-zA-Z]/g,'')" placeholder="英文且首字母必须大写" /></td>
+                            </tr>
+                            <tr>
+                                <th width="100">方法名：</th>
+                                <td><input type="text" class="input" size="30" name="info[fun]" value="{$info.fun}" placeholder="英文" /></td>
+                            </tr>
+                            <tr>
+                                <th width="100">排序：</th>
+                                <td><input type="text" class="input" style="width:6%;" name="info[sort]" value="{$info.sort|default=0}"/></td>
+                            </tr>
+                            <tr>
+                                <th width="100">状态：</th>
+                                <td><label><label><input type="radio" name="info[status]" value="1" <if condition="$info.status eq 1"> checked="checked"</if> /> 启用</label> &nbsp; <input type="radio" name="info[status]" value="0" <if condition="$info.status eq 0"> checked="checked"</if> /> 禁用</label></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" id="cid" name="info[cid]" value="{$info.cid}" />
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+		<include file="Common:foot" />
+        <script type="text/javascript">
+            $(function(){
+                $("#menu").change(function(){
+                    var pid = $(this).val();
+                    if(pid==0){
+                        $('#tr_ctl').show();
+                        $('#tr_short_name').show();
+                    }else{
+                        if($('#cid').val()){
+                            odurl = "{:U('Menu/ajax_getctl')}";
+                            $.post(odurl,{id:pid},function(data){
+                                if(data.status){
+                                    $('#ctl').val(data.info);
+                                    $('#ctl').attr('readonly','readonly');
+                                    
+                                }
+                            },'json')
+                        }else{
+                            $('#tr_ctl').hide();
+                        }
+                    }
+                })
+
+                $(".submit").click(function(){
+                    if($('#name').val()==''){
+                        popup.alert("栏目名称不能为空！");
+                        return false;
+                    }
+                    commonAjaxSubmit();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

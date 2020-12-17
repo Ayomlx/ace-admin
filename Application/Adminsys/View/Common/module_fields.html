@@ -1,0 +1,30 @@
+<volist name="extlist" id="ext">
+    <tr>
+        <th>{$ext.nickname}：</th>
+        <td>
+            <eq name="ext[type]" value="text">
+            <input type="text" class="input" size="{$ext.width}" name="param[{$ext.id}]" value="{$ext.val}" placeholder="{$ext.placeholder}" />
+            </eq>
+            <eq name="ext[type]" value="textarea">
+            <textarea class="input" style="width: {$ext.width}px; height: {$ext.height}px;" name="param[{$ext.id}]" placeholder="{$ext.placeholder}">{$ext.val}</textarea>
+            </eq>
+            <eq name="ext[type]" value="select">
+            <select name="param[{$ext.id}]">
+                <foreach name="ext[option]" item="opt">
+                <option value="{$opt}" <eq name="ext[val]" value="$opt">selected</eq>>{$opt}</option>
+                </foreach>
+            </select>
+            </eq>
+            <eq name="ext[type]" value="radio">
+                <foreach name="ext[option]" item="opt">
+                    <input type="radio" name="param[{$ext.id}]" value="{$opt}" <eq name="ext[val]" value="$opt">checked</eq>> {$opt}&nbsp;&nbsp;
+                </foreach>
+            </eq>
+            <eq name="ext[type]" value="checkbox">
+                <foreach name="ext[option]" item="opt">
+                    <input type="checkbox" name="param[{$ext.id}]" value="{$opt}" <in name="ext[val]" value="$opt">checked</in>> {$opt}&nbsp;&nbsp;
+                </foreach>
+            </eq>
+        </td>
+    </tr>
+</volist>

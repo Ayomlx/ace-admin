@@ -1,0 +1,20 @@
+BODY{BORDER-TOP-WIDTH:0px;PADDING-RIGHT:0px;PADDING-LEFT:0px;BORDER-LEFT-WIDTH:0px;BORDER-BOTTOM-WIDTH:0px;PADDING-BOTTOM:0px;MARGIN:0px;PADDING-TOP:0px;BORDER-RIGHT-WIDTH:0px;color:#333;font-family:"Microsoft yahei","微软雅黑",Tahoma,Verdana,Arial,sans-serif;font-weight:normal;-ms-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;background-color:#1b8de0}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0}.clear{CLEAR:both;DISPLAY:block;OVERFLOW:hidden;HEIGHT:0px}.loginpage{background-image:url(/Public/Admin/Img/Login/patternbg.png)}.loginbox{width:350px;padding:5px;background:#fff;margin:10% auto 0 auto;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:0 0 2px rgba(0,0,0,0.3);-webkit-box-shadow:0 0 2px rgba(0,0,0,0.3);box-shadow:0 0 2px rgba(0,0,0,0.3)}.loginboxinner{padding:20px;background:#fff url(/Public/Img/Login/patternbg.png);-moz-border-radius:0 2px 2px 0;-webkit-border-radius:0 0 2px 2px;border-radius:0 0 2px 2px}.loginbox
+.logo{text-align:center}.loginbox .logo
+h1{font-family:"Microsoft yahei","微软雅黑";font-size:24px;color:#178fdd;border-bottom:1px solid #178fdd;line-height:normal;margin-bottom:5px;padding-bottom:10px;font-weight:normal}.loginbox .logo
+p{font-weight:bold;color:#178fdd;margin-top:10px}.loginbox
+form{display:block;margin-top:20px}.loginbox
+.username{background:#eee url(/Public/Admin/Img/Login/username.png) no-repeat 13px center;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}.loginbox
+.usernameinner{margin-left:45px;border:1px
+solid #ddd;background:#fff;padding-right:20px;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}.loginbox .username
+input{padding:15px
+10px;border:0;font-size:14px;width:100%;box-shadow:none;color:#666;font-family:'RobotoCondensed',Arial,Helvetica,sans-serif;-moz-border-radius:0 2px 2px 0;-webkit-border-radius:0 2px 2px 0;border-radius:0 2px 2px 0}.loginbox
+.password{background:#eee url(/Public/Admin/Img/Login/password.png) no-repeat 13px center;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;margin:20px
+0;overflow:hidden}.loginbox
+.passwordinner{margin-left:45px;border:1px
+solid #ddd;background:#fff;padding-right:20px}.loginbox .password
+input{padding:15px
+10px;border:0;font-size:14px;width:100%;box-shadow:none;color:#666;font-family:'RobotoCondensed',Arial,Helvetica,sans-serif}.loginbox
+button{background:#178fdd url(/Public/Img/Login/btngrad.png) repeat-x top left;border:0;padding:15px
+0;text-align:center;font-family:'RobotoCondensed',Arial,Helvetica,sans-serif;font-size:14px;font-weight:normal;width:100%;text-transform:uppercase;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:0 1px 2px rgba(0,0,0,0.4);-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.4);box-shadow:0 1px 2px rgba(0,0,0,0.4);color:#FFF}.loginbox button:hover{background-color:#f0721e}.loginbox
+.keep{margin-top:20px;font-weight:bold;color:#666;font-size:11px}.loginbox
+.loginmsg{

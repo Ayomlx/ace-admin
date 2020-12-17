@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>添加、编辑字段-模型管理-{$site.SITE_INFO.name}</title>
+        <php>
+            $currentNav ='模型管理 > 添加编辑字段';
+        </php>
+        <base href="{$site.WEB_ROOT}"/>
+        <css href="__CSS__/base.css"/>
+        <css href="__CSS__/layout.css"/>
+        <css href="__CSS__/common.css"/>
+        <css href="--PUBLIC--/Css/pop_status.css"/>
+        <css href="--PUBLIC--/Js/asyncbox/skins/default.css"/>
+        <js href="--PUBLIC--/Js/jquery-1.7.2.min.js"/>
+        <js href="--PUBLIC--/Js/pop_status.js"/>
+        <js href="--PUBLIC--/Js/functions.js"/>
+        <js href="__JS__/base.js"/>
+        <js href="--PUBLIC--/Js/jquery.form.js"/>
+        <js href="--PUBLIC--/Js/asyncbox/asyncbox.js"/>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr clearfix">
+                        <div class="current">{$info.active|default='添加'}字段</div>
+                    </div>
+                    <form>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th>字段类型：</th>
+                                <td>
+                                   <select id="type" name="info[type]">
+                                        <option value=''  <empty name="info[type]">selected</empty>>字段类型</option>
+                                        <option value="text" <eq name="info[type]" value="text">selected</eq>>单行文本</option>
+                                        <option value="textarea" <eq name="info[type]" value="textarea">selected</eq>>多行文本</option>
+                                        <option value="editor" <eq name="info[type]" value="editor">selected</eq>>编辑器</option>
+                                        <option value="select" <eq name="info[type]" value="select">selected</eq>>下拉列表</option>
+                                        <option value="radio" <eq name="info[type]" value="radio">selected</eq>>单选按钮</option>
+                                        <option value="checkbox" <eq name="info[type]" value="checkbox">selected</eq>>复选框</option>
+                                        <!--
+                                        <option value="image" >单张图片</option>
+                                        <option value="images" >多张图片</option>
+                                        <option value="file" >文件上传</option>
+                                        -->
+                                        <option value="number" <eq name="info[type]" value="number">selected</eq>>数字</option>
+                                        <option value="datetime" <eq name="info[type]" value="datetime">selected</eq>>日期和时间</option>
+                                        <option value="posid" <eq name="info[type]" value="posid">selected</eq>>推荐位</option>
+                                        <!--
+                                        <option value="groupid" >会员组</option>
+                                        <option value="linkage" >联动菜单</option>
+                                        <option value="template" >>模板选择</option>
+                                        -->
+                                    </select>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <th width="100">字段名：</th>
+                                <td><input type="text" class="input" style="width:20%;" name="info[name]" value="{$info.name}"/></td>
+                            </tr>
+                            <tr>
+                                <th width="100">字段别名：</th>
+                                <td><input type="text" class="input" style="width:20%;" name="info[nickname]" value="{$info.nickname}"/></td>
+                            </tr>
+                            <tr id="tr_default">
+                                <th width="100">默认值：</th>
+                                <td><input type="text" class="input" style="width:20%;" name="info[default]" value="{$info.default}" /> <span>多值之间用英文","分开</span></td>
+                            </tr>
+                            <tr>
+                                <th width="100">默认提示：</th>
+                                <td><input type="text" class="input" style="width:20%;" name="info[placeholder]" value="{$info.placeholder}"/></td>
+                            </tr>
+                            <tr>
+                                <th width="100">必填：</th>
+                                <td><label><label><input type="radio" name="info[required]" value="1" <if condition="$info.required eq 1"> checked="checked"</if> /> 是</label> &nbsp; <input type="radio" name="info[required]" value="0" <if condition="$info.required eq 0"> checked="checked"</if> /> 否</label></td>
+                            </tr>
+                            <tr>
+                                <th>验证规则：</th>
+                                <td>
+                                   <select id="pattern" name="info[pattern]">
+                                        <option value="" <eq name="info[pattern]" value="">selected</eq>>默认</option>
+                                        <option value="email" <eq name="info[pattern]" value="c">selected</eq>>电子邮件</option>
+                                        <option value="weburl" <eq name="info[pattern]" value="weburl">selected</eq>>网址</option>
+                                        <option value="date" <eq name="info[pattern]" value="date">selected</eq>>日期</option>
+                                        <option value="number" <eq name="info[pattern]" value="number">selected</eq>>数字</option>
+                                        <option value="mobile" <eq name="info[pattern]" value="mobile">selected</eq>>手机号码</option>
+                                        <option value="postcode" <eq name="info[pattern]" value="postcode">selected</eq>>邮编</option>
+                                        <option value="qq" <eq name="info[pattern]" value="qq">selected</eq>>QQ</option>
+                                        <option value="wx" <eq name="info[pattern]" value="wx">selected</eq>>wechat</option>
+                                        <option value="idcard" <eq name="info[pattern]" value="idcard">selected</eq>>身份证号</option>
+                                        <option value="chinese" <eq name="info[pattern]" value="chinese">selected</eq>>汉字</option>
+                                        <option value="english" <eq name="info[pattern]" value="english">selected</eq>>英文</option>
+                                    </select>
+                                 </td>
+                            </tr>
+                            <tr id="tr_size" <notin name="info[type]" value="text,textarea,editor,select">style="display:none;"</notin>>
+                                <th width="100">宽/高：</th>
+                                <td><input type="text" class="input" style="width:6%;" name="info[width]" value="{$info.width}"/> - 
+                                    <input type="text" class="input" style="width:6%;" name="info[height]" value="{$info.height}"/>
+                                </td>
+                            </tr>
+							<tr id="tr_errormsg" <empty name="info[pattern]">style="display:none;"</empty>>
+                                <th width="100">错误提示：</th>
+                                <td><input type="text" class="input" style="width:20%;" name="info[errormsg]" value="{$info.errormsg}" placeholder="验证失败错误信息" /></td>
+                            </tr>
+                            
+                            <tr>
+                                <th width="100">排序：</th>
+                                <td><input type="text" class="input" style="width:6%;" name="info[sort]" value="{$info.sort|default=0}"/></td>
+                            </tr>
+                            <tr>
+                                <th width="100">状态：</th>
+                                <td><label><label><input type="radio" name="info[status]" value="1" <if condition="$info.status eq 1"> checked="checked"</if> /> 启用</label> &nbsp; <input type="radio" name="info[status]" value="0" <if condition="$info.status eq 0"> checked="checked"</if> /> 禁用</label></td>
+                            </tr>
+                            
+                        </table>
+                        <input type="hidden" name="info[id]" value="{$info.id}" />
+                        <input type="hidden" name="info[module_id]" value="{$info.module_id}" />
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+		<include file="Common:foot" />
+        <script type="text/javascript">
+            function in_array(str,array){
+                for(var i in array){
+                    if(array[i]==str){
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            $(function(){
+                $('#type').change(function(){
+                    var oArr = ['text','textarea','editor','selected','number','datetime'];
+                    var option = $(this).children('option:selected').val();
+                    if(in_array(option,oArr)){
+                        $('#tr_size').show();
+                    }else{
+                        $('#tr_size').hide();
+                    }
+                })
+
+                $('#pattern').change(function(){
+                    var option = $(this).children('option:selected').val();
+                    if(option==''){
+                        $('#tr_errormsg').hide();
+                    }else{
+                        $('#tr_errormsg').show();
+                    }
+                })
+                
+                $(".submit").click(function(){
+                    if($('#name').val()==''){
+                        popup.alert("字段名不能为空滴！");
+                        return false;
+                    }
+                    commonAjaxSubmit();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

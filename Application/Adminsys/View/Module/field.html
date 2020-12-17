@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>字段列表-{$site.SITE_INFO.name}</title>
+        <php>
+            $currentNav ='模型管理 > 字段列表';
+        </php>
+        <css href="__CSS__/base.css"/>
+        <css href="__CSS__/layout.css"/>
+        <css href="__CSS__/common.css"/>
+        <css href="--PUBLIC--/Css/pop_status.css"/>
+        <css href="--PUBLIC--/Js/asyncbox/skins/default.css"/>
+        <js href="--PUBLIC--/Js/jquery-1.7.2.min.js"/>
+        <js href="--PUBLIC--/Js/pop_status.js"/>
+        <js href="--PUBLIC--/Js/functions.js"/>
+        <js href="__JS__/base.js"/>
+        <js href="--PUBLIC--/Js/jquery.form.js"/>
+        <js href="--PUBLIC--/Js/asyncbox/asyncbox.js"/>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    
+                    <div class="Item hr clearfix">
+                        <div class="current">字段列表</div>
+                        <a href="{:U('__URL__/field_add',array('id'=>$module_id))}" class="btn fr">添加字段</a>
+                    </div>
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                              <td width="4%">ID</td>
+                              <td width="42%">字段名</td>
+                              <td width="12%">别名</td>
+                              <td width="8%">类型</td>
+                              <td width="8%">验证</td>
+                              <td width="4%">必填</td>
+                              <td width="4%">状态</td>
+                              <td width="12%">排序</td>
+                              <td width="6%">操作</td>
+                          </tr>
+                        </thead>
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                              <td align="center"><input id="id" name="id[]" type="checkbox" value="{$vo.id}" /></td>
+                              <td align="left">{$vo.name}</td>
+                              <td align="left">{$vo.nickname}</td>
+                              <td align="left">{$vo.type}</td>
+                              <td align="left"><empty name="vo[pattern]">无<else/>{$vo.pattern}</empty></td>
+                              <td align="center"><eq name="vo[required]" value="0"><img src="__IMG__/toolbar_no.gif" /><else/><img src="__IMG__/toolbar_ok.gif" /></eq></td>
+                              <td align="center"><eq name="vo[status]" value="0"><img src="__IMG__/toolbar_no.gif" /><else/><img src="__IMG__/toolbar_ok.gif" /></eq></td>
+                              <td align="center">
+                                <div class="ajax_order">
+                                    <a class="rising" href="javascript:void(0)">加</a>
+                                    <span class="input" aid="{$vo.id}">{$vo.sort}</span>
+                                    <a class="drop" href="javascript:void(0)">减</a>
+                                </div>
+                              </td>
+                              <td align="center"> <a href="__URL__/field_edit?id={$vo.id}">编辑 </a></td>
+                          </tr>
+                        </volist>
+                        <tr align="center">
+                          <td colspan="9" align="right"><span class="tdtxt" style="padding-right:12px;">
+                            <input type="checkbox" id="chkall" /> 选中/取消所有</span>
+                            <select name="set_status" id="set_status">
+                              <option value="R-0">必填:否</option>
+                              <option value="R-1">必填:是</option>
+                              <option value="S-0">状态:禁用</option>
+                              <option value="S-1">状态:启用</option>
+                            </select>
+                            &nbsp;&nbsp;<button class="btn" id="set">设置</button>
+                            <button class="btn" id="del">批量删除</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+  			 $(function(){
+  				  $("#chkall").click(function(){
+              $("input[name='id[]']").prop("checked", $(this).prop("checked")); 
+            })
+            
+            //异步删除信息
+            $('#del').on("click",function(){
+              var delUrl = "{:U('Module/field_del')}";
+              var idArr = new Array;
+              $("input[name='id[]']:checkbox:checked").each(function(i){
+                idArr[i] = $(this).val()
+              });
+              if(idArr.length==0){
+                popup.error('选项不能为空,请选择.'); 
+                return false;
+              }
+              popup.confirm('你真的打算删除操作吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                  $.post(delUrl,{'id':idArr},function(data){
+                    if(data.status==1){
+                      popup.success(data.info);
+                      setTimeout(function(){
+                        location.reload();
+                      },1000)
+                    }else{
+                      popup.error(data.info);  
+                    }
+                  },'json');
+                }
+              });
+              return false;
+            });
+
+            //异步编辑排序字段
+    				$('.ajax_order a').on("click",function(){
+    					var odType = $(this).attr('class');
+    					var odShow = $(this).parents('.ajax_order').children('.input');
+    					var odVal = odShow.html();
+    					var odAid = odShow.attr('aid');
+              var sortUrl = "{:U('Module/field_sort')}"; //排序提交地址
+    					$.post(sortUrl,{'odType':odType,'odAid':odAid},function(data){      //ajax后台
+    						if (data.status) {
+    							if(odType == 'rising'){
+    								odShow.html(parseInt(odVal) + 1);
+    							}else if(odType == 'drop'){
+    								odShow.html(parseInt(odVal) - 1);
+    							}
+    							
+    						} else {
+    							popup.error(data.info);
+    						}
+    					},'json');        
+  				  });
+    			
+            //异步设置
+            $('#set').on("click",function(){
+              var setUrl = "{:U('Module/field_ajaxset')}";
+              var idArr = new Array;
+              $("input[name='id[]']:checkbox:checked").each(function(i){
+                idArr[i] = $(this).val()
+              });
+              if(idArr.length==0){
+                popup.error('选项不能为空,请选择.'); 
+                return false;
+              }
+              var opt = $('#set_status').val();
+              popup.confirm('确认此项操作吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                  $.post(setUrl,{'id':idArr,'opt':opt},function(data){
+                    console.log(data);
+                    if(data.status==1){
+                      popup.success(data.info);
+                      setTimeout(function(){
+                        location.reload();
+                      },1000)
+                    }else{
+                      alert(data.info);  
+                    }
+                  },'json');
+                }
+              }); 
+              return false;
+            });
+
+            //添加/编辑提交
+            $('.quickSubmit').click(function(){
+                if($('#module_name').val()==''){
+                    popup.alert('模型名称不能为空滴！');
+                    return false;
+                }
+                commonAjaxSubmit('','#quickForm');
+                return false;
+            });
+
+
+        });
+        </script>
+    </body>
+</html>

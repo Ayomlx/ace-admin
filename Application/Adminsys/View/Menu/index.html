@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>栏目列表-{$site.SITE_INFO.name}</title>
+        <php>
+            $currentNav ='栏目管理 > 栏目列表';
+        </php>
+        <include file="Common:intoHead" />
+        <style>
+        .auto_textarea {
+          width: 120px;
+          min-height: 20px;
+          line-height: 20px;
+          _height: 20px;
+          /* max-height: 150px;*/
+          margin-left: 0px;
+          margin-right: auto;
+          padding: 2px;
+          outline: 0;
+          border: 1px solid #ccc;
+          font-size: 12px;
+          word-wrap: break-word;
+          overflow-x: hidden;
+          overflow-y: auto;
+          -webkit-user-modify: read-write-plaintext-only;
+          border-radius: 0px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr clearfix">
+                        <div class="current">栏目列表</div>
+                        <a href="{:U('__URL__/add')}" class="btn fr">添加栏目</a>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                              <td width="4%">ID</td>
+                              <td width="4%">结构</td>
+                              <td width="32%">栏目名称</td>
+                              <td width="20%">简称</td>
+                              <td width="8%">控制器</td>
+                              <td width="8%">方法</td>
+                              <td width="6%">状态</td>
+                              <td width="12%">排序</td>
+                              <td width="6%">操作</td>
+                          </tr>
+                        </thead>
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.cid}" pid="{$vo.pid}">
+                              <td align="center"><input id="id" name="id[]" type="checkbox" value="{$vo.cid}" /></td>
+                              <td class="tree" style="cursor: pointer;">展开</td>
+                              <td align="left">
+                                <div class="auto_textarea ajax_name" name="ajax_name" attr_f="name" attr_tp="star" attr_id="{$vo.cid}" attr_val="{$vo.name}" contenteditable="true" >{$vo.name}</div>
+                              </td>
+                              <td align="left">
+                                <div class="auto_textarea ajax_short_name" name="ajax_short_name" attr_f="short_name" attr_tp="star" attr_id="{$vo.cid}" attr_val="{$vo.short_name}" contenteditable="true" >{$vo.short_name}</div>
+                              </td>
+                              <td align="left">{$vo.ctl}</td>
+                              <td align="left">{$vo.fun}</td>
+                              <td align="center"><eq name="vo[status]" value="0"><img src="__IMG__/toolbar_no.gif" /><else/><img src="__IMG__/toolbar_ok.gif" /></eq></td>
+                              <td align="center">
+                                <div class="ajax_order">
+                                    <a class="rising" href="javascript:void(0)">加</a>
+                                    <span class="input" aid="{$vo.cid}">{$vo.sort}</span>
+                                    <a class="drop" href="javascript:void(0)">减</a>
+                                </div>
+                              </td>
+                              <td align="center"><notin name="vo[cid]" value="5,13,24"><a href="__URL__/edit?id={$vo.cid}">编辑</a></notin></td>
+                            </tr>
+                            <volist name="vo[childmenu]" id="item">
+                               <tr align="center" id="{$item.cid}" pid="{$item.pid}" class="twoTree">
+                                <td align="center"><input id="id" name="id[]" type="checkbox" value="{$item.cid}" /></td>
+                                <td></td>
+                                <td align="left" style="padding-left: 40px;">
+                                  <div style="float: left; width: 20px; padding-top: 1px;">├</div> <div class="auto_textarea ajax_name" name="ajax_name" attr_tp="star" attr_id="{$item.cid}" attr_val="{$item.name}" contenteditable="true" >{$item.name}</div>
+                                </td>
+                                <td align="left">
+                                <!--<div class="auto_textarea ajax_short_name" name="ajax_short_name" attr_f="short_name" attr_tp="star" attr_id="{$item.cid}" attr_val="{$item.short_name}" contenteditable="true" >{$item.short_name}</div>-->
+                              </td>
+                                <td align="left">{$item.ctl}</td>
+                                <td align="left">{$item.fun}</td>
+                                <td align="center"><eq name="item[status]" value="0"><img src="__IMG__/toolbar_no.gif" /><else/><img src="__IMG__/toolbar_ok.gif" /></eq></td>
+                                <td align="center">
+                                  <div class="ajax_order">
+                                      <a class="rising" href="javascript:void(0)">加</a>
+                                      <span class="input" aid="{$item.cid}">{$item.sort}</span>
+                                      <a class="drop" href="javascript:void(0)">减</a>
+                                  </div>
+                                </td>
+                                <td align="center"><notin name="item[cid]" value="5,13,24"><a href="__URL__/edit?id={$item.cid}">编辑</a></notin></td>
+                               </tr>
+                            </volist>
+                        </volist>
+                        <tr align="center">
+                          <td colspan="9" align="right"><span class="tdtxt" style="padding-right:12px;">
+                            <input type="checkbox" id="chkall" /> 选中/取消所有</span>
+                            <select name="set_status" id="set_status">
+                              <option value="0">状态:禁用</option>
+                              <option value="1">状态:启用</option>
+                            </select>
+                            &nbsp;&nbsp;<button class="btn" id="set">设置</button>
+                            <button class="btn" id="del">批量删除</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+      			$(function(){
+              $.each($(".twoTree"), function(i){   
+                   if(i >= 0){      
+                         this.style.display = 'none';  
+                    } 
+              });
+
+              $("#chkall").click(function(){
+                $("input[name='id[]']").prop("checked", $(this).prop("checked")); 
+              })
+
+              //异步编辑排序字段
+      				$('.ajax_order a').on("click",function(){
+      					var odType = $(this).attr('class');
+      					var odShow = $(this).parents('.ajax_order').children('.input');
+      					var odVal = odShow.html();
+      					var odAid = odShow.attr('aid');
+      					var sortUrl = "{:U('Menu/sort')}";
+                $.post(sortUrl,{'odType':odType,'odAid':odAid},function(data){      //ajax后台
+      						if (data.status) {
+      							if(odType == 'rising'){
+      								odShow.html(parseInt(odVal) + 1);
+      							}else if(odType == 'drop'){
+      								odShow.html(parseInt(odVal) - 1);
+      							}
+      							
+      						} else {
+      							popup.error(data.msg);
+      						}
+      					},'json');        
+      				});
+
+      				//异步删除信息
+              $('#del').on("click",function(){
+                var delUrl = "{:U('Menu/del')}";
+                var idArr = new Array;
+                $("input[name='id[]']:checkbox:checked").each(function(i){
+                  idArr[i] = $(this).val()
+                });
+                if(idArr.length==0){
+                  popup.error('选项不能为空,请选择.'); 
+                  return false;
+                }
+                popup.confirm('你真的打算删除操作吗?','温馨提示',function(action){
+                  if(action == 'ok'){
+                    $.post(delUrl,{'id':idArr},function(data){
+                      if(data.status==1){
+                        popup.success(data.info);
+                        setTimeout(function(){
+                          location.reload();
+                        },1000)
+                      }else{
+                        popup.error(data.info);  
+                      }
+                    },'json');
+                  }
+                });
+                return false;
+              });
+
+              //异步设置
+              $('#set').on("click",function(){
+                var setUrl = "{:U('Menu/set_status')}";
+                var idArr = new Array;
+                $("input[name='id[]']:checkbox:checked").each(function(i){
+                  idArr[i] = $(this).val()
+                });
+                if(idArr.length==0){
+                  popup.error('选项不能为空,请选择.'); 
+                  return false;
+                }
+                var opt = $('#set_status').val();
+                popup.confirm('确认此项操作吗?','温馨提示',function(action){
+                  if(action == 'ok'){
+                    $.post(setUrl,{'id':idArr,'opt':opt},function(data){
+                      console.log(data);
+                      if(data.status==1){
+                        popup.success(data.info);
+                        setTimeout(function(){
+                          location.reload();
+                        },1000)
+                      }else{
+                        alert(data.info);  
+                      }
+                    },'json');
+                  }
+                }); 
+                return false;
+              });
+
+              var chn=function(cid,op){
+                  if(op=="show"){
+                      $("tr[pid='"+cid+"']").each(function(){
+                          $(this).removeAttr("status").show();
+                          chn($(this).attr("id"),"show");
+
+                      });
+                  }else{
+                      $("tr[pid='"+cid+"']").each(function(){
+                          $(this).attr("status",1).hide();
+                          chn($(this).attr("id"),"hide");
+                      });
+                  }
+              }
+              $(".tree").click(function(){
+                  if($(this).attr("status")==1){
+                      chn($(this).parent().attr("id"),"hide");
+                      $(this).html('展开');
+                      $(this).removeAttr("status");
+                  }else{
+                      chn($(this).parent().attr("id"),"show");
+                      $(this).html('<span style="color:#266AAE;font-weight:bold;">收缩</span>');
+                      $(this).attr("status",1);
+                  }
+              });
+
+
+              //异步修改名称信息
+              $('.ajax_name,.ajax_short_name').blur(function(){
+                var odVal = $(this).text();
+                var odId = $(this).attr('attr_id');
+                var oldVal = $(this).attr('attr_val');
+                var f = $(this).attr('attr_f');
+                if(oldVal==odVal){
+                  return false;
+                }
+                var odUrl_set = "{:U('Menu/ajax_set_name')}";
+                $.post(odUrl_set,{odId:odId,odVal:odVal,f:f},function(data){
+                  console.log(data);
+                  if (data.status==1) {
+                    popup.success(data.info);
+                    //location.reload();
+                  } else {
+                    popup.error(data.info);
+                  }
+                },'json');  
+              });
+
+      			});   
+        </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+
+.m-nav-tab{
+	height:40px;
+	line-height:40px;
+	padding:0 0px;
+	position:relative;
+	border-left:solid 0px #d1d1d1;
+}
+.m-nav-tab ul{ border-bottom:1px solid #0069a7; height:32px;}
+.m-nav-tab li{float:left;color:#000;height:30px;cursor:pointer;line-height:30px;text-align:center;font-size:12px;font-family:Microsoft YaHei;border-top:solid 1px #d1d1d1;border-right:solid 1px #d1d1d1;border-left:solid 1px #d1d1d1;background-color:#FFF;border-bottom:solid 0px #f30213; margin-right:5px; /*padding-left:15px; padding-right:15px;*/ width:80px;}
+.m-nav-tab li.current{color:#FFF;background:#0069a7;border-top:solid 2px #0069a7;border-right:solid 2px #0069a7;border-left:solid 2px #0069a7;font-weight:bold; border-bottom:solid 0px #FFF;border-radius: 0px;height:30px;line-height:30px;}
+.m-nav-tab li a{width:80px;height:30px; display:block;}
+.m-nav-tab li.current a{color:#f30213;}
+.m-nav-tab li.current a:hover{color:#f30213;}
+/*.m-nav-tab li.current a{color:#1299ec;}*/

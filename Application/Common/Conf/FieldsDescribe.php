@@ -1,0 +1,1 @@
+<?php	return array ( 'FIELDS_NAME' => '内容介绍', 'FIELDS_DESCRIBE' => '', );?>

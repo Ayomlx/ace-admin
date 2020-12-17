@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>登录方式管理-用户管理-{$site.SITE_INFO.name}</title>
+    <php>
+        
+        
+        $currentNav ='用户管理 > 登录方式管理';
+    </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap"> <include file="Common:head" />
+    <div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+            <div class="contentArea">
+                <div class="Item hr clearfix">
+                    <div class="current">登录方式</div>
+                </div>
+                <form action="" method="post">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+
+                        <tr>
+                            <th width="120">微信登录：</th>
+                            <td>
+                                <input <eq name="mbcof.wechat.status" value="1">checked="checked"</eq> type="radio" name="wechat[status]" value="1">开启&nbsp;&nbsp;&nbsp;&nbsp;
+								<input <eq name="mbcof.wechat.status" value="0">checked="checked"</eq> type="radio" name="wechat[status]" value="0">禁用&nbsp;&nbsp;&nbsp;&nbsp;
+								<img src="/Public/Admin/img/ico_wechat.png" align="absmiddle">
+								<a href="https://open.weixin.qq.com/cgi-bin/frame?t=home/web_tmpl&amp;lang=zh_CN" target="_blank" class="t">帐号申请</a>
+                            </td>
+                        </tr>
+						<tr>
+                            <th width="120">名称：</th>
+                            <td><input type="text" class="input" size="25" name="wechat[name]" value="{$mbcof.wechat.name}"/></td>
+                        </tr>
+						<tr>
+                            <th width="120">APP ID：</th>
+                            <td><input type="text" class="input" size="50" name="wechat[id]" value="{$mbcof.wechat.id}"/></td>
+                        </tr>
+						<tr>
+                            <th width="120">APP KEY：</th>
+                            <td><input type="text" class="input" size="50" name="wechat[key]" value="{$mbcof.wechat.key}"/></td>
+                        </tr>
+						<tr>
+                            <th width="120">QQ登录：</th>
+                            <td>
+                                <input <eq name="mbcof.qq.status" value="1">checked="checked"</eq> type="radio" name="qq[status]" value="1">开启&nbsp;&nbsp;&nbsp;&nbsp;
+								<input <eq name="mbcof.qq.status" value="0">checked="checked"</eq> type="radio" name="qq[status]" value="0">禁用&nbsp;&nbsp;&nbsp;&nbsp;
+								<img src="/Public/Admin/img/ico_qq.png" align="absmiddle">
+								<a href="http://connect.qq.com/" target="_blank" class="t">帐号申请</a>
+                            </td>
+                        </tr>
+						<tr>
+                            <th width="120">名称：</th>
+                            <td><input type="text" class="input" size="25" name="qq[name]" value="{$mbcof.qq.name}"/></td>
+                        </tr>
+						<tr>
+                            <th width="120">APP ID：</th>
+                            <td><input type="text" class="input" size="50" name="qq[id]" value="{$mbcof.qq.id}"/></td>
+                        </tr>
+						<tr>
+                            <th width="120">APP KEY：</th>
+                            <td><input type="text" class="input" size="50" name="qq[key]" value="{$mbcof.qq.key}"/></td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="commonBtnArea" >
+                    <button class="btn submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+
+<script type="text/javascript">
+    $(function(){
+        $(".submit").click(function(){
+            commonAjaxSubmit();
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

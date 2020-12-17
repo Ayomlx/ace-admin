@@ -1,0 +1,16 @@
+<div id="Left">
+    <div id="control" class=""></div>
+    <div class="subMenuList">
+        <ul>
+			<li>
+				<a>{$menu_name}</a>
+				<ol class="child_list">
+					<foreach name="sub_menu" item="sv">
+						<li><a href="{$sv.url}">{$sv.title}</a></li>
+					</foreach>
+				</ol>
+			</li>
+        </ul>
+    </div>
+
+</div>

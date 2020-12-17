@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            <eq name="ACTION_NAME" value="index">单页列表</eq>
+            <eq name="ACTION_NAME" value="search">搜索结果</eq>
+            -{$site.SITE_INFO.name}
+        </title>
+        <php>
+            if(ACTION_NAME == 'index'){
+                $pagname = '单页列表';
+            }elseif(ACTION_NAME == 'search'){
+                $pagname = '搜索结果';
+            };
+            $addCss="";
+            $addJs="";
+            $currentNav ='单页管理 > '.$pagname;
+        </php>
+        <include file="Common:intoHead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr clearfix">
+                        <div class="current">
+                            <eq name="ACTION_NAME" value="index">单页列表</eq>
+                            <eq name="ACTION_NAME" value="search">搜索结果</eq>
+                        </div>
+                        <div class="search">
+                            <form action="{:U('search')}" method='get'>
+                            关键字：
+                                <input type="text" value="{$keyS.keyword}" name="keyword" class="input" placeholder="搜索标题的关键字" />
+                                &nbsp;&nbsp;分类：
+                                <select name="cid">
+                                    <option value="">所有分类</option>
+                                    <volist name="cate" id="vo">
+                                        <if condition="$vo[cid] eq $keyS[cid]">
+                                            <option value="{$vo.cid}" selected="selected">{$vo.fullname}</option>
+                                            <else/>
+                                            <option value="{$vo.cid}">{$vo.fullname}</option>
+                                        </if>
+                                    </volist>
+                                </select>
+                                &nbsp;&nbsp;<button class="btn">筛选</button>
+                            </form>
+                        </div>
+                    </div>
+                  <eq name="ACTION_NAME" value="search">
+                        <div class="seamsg">
+                            在<span class="keyword">{$keyS.name}</span>分类下找到<span class="keyword">{$keyS.count}</span>个<if condition="$keyS['keyword'] != ''">与<span class="keyword">{$keyS.keyword}</span>相关的</if>单页！
+                        </div>
+                    </eq>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                            <tr>
+                              <td width="4%">ID</td>
+                              <td width="82%">名称</td>
+                              <td width="10%">排序</td>
+                              <td width="4%">操作</td>
+                          </tr>
+                        </thead>
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                              <td><input id="id" name="id[]" type="checkbox" value="{$vo.id}" /></td>
+                              <td align="left">{$vo.title}</td>
+                              <td align="center">
+                                <div class="ajax_order">
+                                    <a class="rising" href="javascript:void(0)">加</a>
+                                    <span class="input" aid="{$vo.id}">{$vo.sort}</span>
+                                    <a class="drop" href="javascript:void(0)">减</a>
+                                </div>
+                              </td>
+                              <td align="center"> <a href="__URL__/edit?id={$vo.id}">编辑 </a></td>
+                          </tr>
+                        </volist>
+                        <tr align="center">
+                          <td colspan="4" align="right"><span class="tdtxt" style="padding-right:12px;">
+                            <input type="checkbox" id="chkall" /> 选中/取消所有</span>&nbsp;&nbsp;
+                            <button class="btn" id="del">批量删除</button></td>
+                        </tr>
+						<notempty name="$page">
+                        <tr>
+                            <td colspan="8" align="right" class="page">{$page}</td>
+                        </tr>
+                        </notempty>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+            var odUrl = "{:U('About/sort')}"; //排序提交地址
+			$(function(){
+				$("#chkall").click(function(){
+                  $("input[name='id[]']").prop("checked", $(this).prop("checked")); 
+                })
+
+                //异步删除信息
+                $('#del').on("click",function(){
+                  var delUrl = "{:U('About/del')}";
+                  var idArr = new Array;
+                  $("input[name='id[]']:checkbox:checked").each(function(i){
+                    idArr[i] = $(this).val()
+                  });
+                  if(idArr.length==0){
+                    popup.error('选项不能为空,请选择.'); 
+                    return false;
+                  }
+                  popup.confirm('删除模型,其所属字段一并删除,确认此项操作吗?','温馨提示',function(action){
+                    if(action == 'ok'){
+                      $.post(delUrl,{'id':idArr},function(data){
+                        if(data.status==1){
+                          popup.success(data.info);
+                          setTimeout(function(){
+                            location.reload();
+                          },1000)
+                        }else{
+                          popup.error(data.info);  
+                        }
+                      },'json');
+                    }
+                  });
+                  return false;
+                });
+
+                //异步编辑排序字段
+				$('.ajax_order a').on("click",function(){
+					var odType = $(this).attr('class');
+					var odShow = $(this).parents('.ajax_order').children('.input');
+					var odVal = odShow.html();
+					var odAid = odShow.attr('aid');
+					$.post(odUrl,{'odType':odType,'odAid':odAid},function(data){      //ajax后台
+						if (data.status) {
+							if(odType == 'rising'){
+								odShow.html(parseInt(odVal) + 1);
+							}else if(odType == 'drop'){
+								odShow.html(parseInt(odVal) - 1);
+							}
+							
+						} else {
+							popup.error(data.msg);
+						}
+					},'json');        
+				});
+				
+
+			});   
+        </script>
+    </body>
+</html>

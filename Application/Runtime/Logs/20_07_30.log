@@ -1,0 +1,196 @@
+[ 2020-07-30T10:01:09+08:00 ] ::1 /Adminsys/Public/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001208s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000153s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012453s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012552s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000752s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001091s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001969s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000954s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001035s ]
+
+[ 2020-07-30T10:01:14+08:00 ] ::1 /Adminsys/Public/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000456s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000708s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000778s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\site\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `on_public` [ RunTime:0.001188s ]
+ERR: 1146:Table 'site.on_public' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `on_public`
+NOTIC: [2] Missing argument 1 for Adminsys\Model\PublicModel::auth(), called in D:\wamp\www\site\Application\Adminsys\Controller\PublicController.class.php on line 35 and defined D:\wamp\www\site\Application\Adminsys\Model\PublicModel.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `on_admin` [ RunTime:0.004351s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `on_admin` WHERE ( `account` = 'admin' ) LIMIT 1   [ RunTime:0.000457s ]
+SQL: SELECT * FROM `on_admin` WHERE ( `account` = 'admin' ) LIMIT 1   [ RunTime:0.000243s ]
+SQL: SELECT * FROM `on_admin` WHERE ( `account` = 'admin' ) LIMIT 1   [ RunTime:0.000220s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000702s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000769s ]
+
+[ 2020-07-30T10:01:17+08:00 ] ::1 /Adminsys/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000781s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001076s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\site\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `on_common` [ RunTime:0.000718s ]
+ERR: 1146:Table 'site.on_common' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `on_common`
+NOTIC: [2] Missing argument 4 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 125 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 125 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+SQL: SHOW COLUMNS FROM `on_menu` [ RunTime:0.002299s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_menu` WHERE ( pid=0 and status=1 ) ORDER BY sort desc,cid asc  [ RunTime:0.000530s ]
+NOTIC: [8] Undefined variable: menu D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php 第 129 行.
+NOTIC: [2] Missing argument 4 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 144 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 144 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_menu` WHERE ( `ctl` = 'Index' ) AND ( `fun` <> '' ) ORDER BY sort desc,cid asc  [ RunTime:0.000217s ]
+SQL: SELECT `name` FROM `on_menu` WHERE ( `pid` = 0 ) AND ( `ctl` = 'Index' ) LIMIT 1   [ RunTime:0.000144s ]
+NOTIC: [8] Use of undefined constant WEB_ROOT - assumed 'WEB_ROOT' D:\wamp\www\site\Application\Adminsys\Controller\IndexController.class.php 第 18 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000160s ]
+NOTIC: [8] Undefined variable: caches D:\wamp\www\site\Application\Runtime\Cache\Adminsys\1ee182d851246f0c7761d6e9e06919b7.php 第 55 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013772s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013857s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000663s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000859s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001656s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000778s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000855s ]
+
+[ 2020-07-30T10:01:17+08:00 ] ::1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000525s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000828s ]
+NOTIC: [8] Undefined index: webroot D:\wamp\www\site\Application\Home\Controller\CommonController.class.php 第 34 行.
+NOTIC: [8] Undefined index: b5fd7285bfb79012a89bee15b9be246b D:\wamp\www\site\Application\Home\Controller\CommonController.class.php 第 41 行.
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\site\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `on_about_category` [ RunTime:0.000603s ]
+ERR: 1146:Table 'site.on_about_category' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `on_about_category`
+SQL: SELECT * FROM `on_about_category` WHERE ( pid=0 ) ORDER BY sort desc  [ RunTime:0.000313s ]
+ERR: 1146:Table 'site.on_about_category' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `on_about_category` WHERE ( pid=0 ) ORDER BY sort desc 
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp\www\site\Application\Home\Controller\CommonController.class.php 第 56 行.
+SQL: SHOW COLUMNS FROM `on_common` [ RunTime:0.000560s ]
+ERR: 1146:Table 'site.on_common' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `on_common`
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 8 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 8 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+SQL: SHOW COLUMNS FROM `on_slide` [ RunTime:0.001881s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_slide` WHERE ( cid=0 ) ORDER BY sort desc  [ RunTime:0.000603s ]
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 10 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 10 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_slide` WHERE ( cid=1 ) ORDER BY sort desc  [ RunTime:0.000546s ]
+NOTIC: [2] Missing argument 2 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 12 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 12 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Home\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 12 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 17 行.
+SQL: SHOW COLUMNS FROM `on_extend_product` [ RunTime:0.002336s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: where D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 22 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_extend_product` ORDER BY sort desc  [ RunTime:0.000645s ]
+NOTIC: [2] Missing argument 3 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 14 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 14 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+SQL: SHOW COLUMNS FROM `on_team_case` [ RunTime:0.004746s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+NOTIC: [8] Undefined variable: order D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+SQL: SELECT * FROM `on_team_case` WHERE ( type=0 ) LIMIT 1   [ RunTime:0.000889s ]
+NOTIC: [2] Missing argument 3 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 17 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 17 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+NOTIC: [8] Undefined variable: order D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+SQL: SELECT * FROM `on_team_case` WHERE ( type=1 ) LIMIT 1   [ RunTime:0.000328s ]
+NOTIC: [2] Missing argument 3 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 20 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+NOTIC: [2] Missing argument 4 for Home\Model\CommonModel::getFind(), called in D:\wamp\www\site\Application\Home\Controller\IndexController.class.php on line 20 and defined D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 34 行.
+SQL: SHOW COLUMNS FROM `on_about` [ RunTime:0.001928s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+NOTIC: [8] Undefined variable: order D:\wamp\www\site\Application\Home\Model\CommonModel.class.php 第 36 行.
+SQL: SELECT * FROM `on_about` WHERE ( cid=42 ) LIMIT 1   [ RunTime:0.000718s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000254s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000397s ]
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 67 行.
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 67 行.
+NOTIC: [8] Use of undefined constant slide - assumed 'slide' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 90 行.
+NOTIC: [8] Use of undefined constant slide - assumed 'slide' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 90 行.
+NOTIC: [8] Use of undefined constant catimg - assumed 'catimg' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 113 行.
+NOTIC: [8] Use of undefined constant catimg - assumed 'catimg' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 113 行.
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 139 行.
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 139 行.
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 155 行.
+NOTIC: [8] Use of undefined constant product - assumed 'product' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 155 行.
+NOTIC: [8] Use of undefined constant tech - assumed 'tech' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 180 行.
+NOTIC: [8] Use of undefined constant tech - assumed 'tech' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 180 行.
+NOTIC: [8] Use of undefined constant tech - assumed 'tech' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 180 行.
+NOTIC: [8] Use of undefined constant cases - assumed 'cases' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 208 行.
+NOTIC: [8] Use of undefined constant cases - assumed 'cases' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 208 行.
+NOTIC: [8] Use of undefined constant cases - assumed 'cases' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 208 行.
+NOTIC: [8] Use of undefined constant about - assumed 'about' D:\wamp\www\site\Application\Runtime\Cache\Home\f1ed81fd8b2cfad78cc6d73deb529dc3.php 第 234 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034757s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034886s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001105s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001892s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000794s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000881s ]
+
+[ 2020-07-30T10:01:17+08:00 ] ::1 /Adminsys/SysData/backup.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000736s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000869s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000968s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead D:\wamp\www\site\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php 第 52 行.
+SQL: SHOW COLUMNS FROM `on_common` [ RunTime:0.000681s ]
+ERR: 1146:Table 'site.on_common' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `on_common`
+NOTIC: [2] Missing argument 4 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 125 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 125 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+SQL: SHOW COLUMNS FROM `on_menu` [ RunTime:0.001080s ]
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_menu` WHERE ( pid=0 and status=1 ) ORDER BY sort desc,cid asc  [ RunTime:0.000754s ]
+NOTIC: [8] Undefined variable: menu D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php 第 129 行.
+NOTIC: [2] Missing argument 4 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 144 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [2] Missing argument 5 for Adminsys\Model\CommonModel::getList(), called in D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php on line 144 and defined D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 17 行.
+NOTIC: [8] Undefined variable: field D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 19 行.
+NOTIC: [8] Undefined variable: limit D:\wamp\www\site\Application\Adminsys\Model\CommonModel.class.php 第 22 行.
+SQL: SELECT * FROM `on_menu` WHERE ( `ctl` = 'SysData' ) AND ( `fun` <> '' ) ORDER BY sort desc,cid asc  [ RunTime:0.000796s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php 第 146 行.
+NOTIC: [8] Undefined variable: sub_menu D:\wamp\www\site\Application\Adminsys\Controller\CommonController.class.php 第 150 行.
+SQL: SELECT `name` FROM `on_menu` WHERE ( `pid` = 0 ) AND ( `ctl` = 'SysData' ) LIMIT 1   [ RunTime:0.000824s ]
+NOTIC: [8] Undefined index: email D:\wamp\www\site\Application\Adminsys\Controller\SysDataController.class.php 第 43 行.
+

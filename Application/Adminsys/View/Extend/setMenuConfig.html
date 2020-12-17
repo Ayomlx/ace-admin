@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>板块简介-扩展管理-{$site.SITE_INFO.name}</title>
+        <php>
+            
+            
+            $currentNav ='扩展管理 > 板块配置';
+        </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+    <div class="wrap"> <include file="Common:head" />
+        <div class="mainBody"> <include file="Common:left" />
+            <div id="Right">
+                <div class="contentArea">
+                    <div class="Item hr clearfix">
+                        <div class="current">板块简介设置</div>
+                    </div>
+                    <form action="" method="post">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">产品：</th>
+                                <td><textarea name="product" cols="100" rows="3">{$mbcof.product}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th width="120">技术团队：</th>
+                                <td><textarea name="tech" cols="100" rows="3">{$mbcof.tech}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th>案例：</th>
+                                <td><textarea name="cases" cols="100" rows="3">{$mbcof.cases}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th>关于我们：</th>
+                                <td><textarea name="about" cols="100" rows="3">{$mbcof.about}</textarea></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <include file="Common:foot" />
+    <script type="text/javascript">
+        $(".submit").click(function(){
+            commonAjaxSubmit();
+        });
+    </script>
+</body>
+</html>
